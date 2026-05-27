@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.5.1",
-    "next": "16.2.4",
+    "next": "latest",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -20,8 +20,16 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.4",
+    "eslint-config-next": "latest",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "abs-svg-path": "latest",
+    "browserify-zlib": "latest",
+    "hsl-to-hex": "latest",
+    "parse-svg-path": "latest",
+    "postcss": "latest",
+    "require-from-string": "latest"
   }
 }
