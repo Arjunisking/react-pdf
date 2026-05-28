@@ -18,40 +18,39 @@ Font.registerHyphenationCallback((word) => [word]);
 
 const BODY_FONT = 'Helvetica';
 
+// Integrated exact brand palette requirements
 const palette = {
   primary: '#01472E',
   deep: '#0F1F17',
-  cream: '#FEFAE0',
-  pale: '#E9EDC9',
-  sage: '#CCD5AE',
-  accent: '#A3B18A',
+  cream: '#fefae0', 
+  olive: '#e9edc9',
+  sage: '#ccd5ae',
+  moss: '#a3b18a',
   ink: '#101811',
   muted: '#5F6B5A',
   line: '#D8DEC1',
-  white: '#FFFFFF',
-  softWhite: '#EAF0D8',
 };
 
 const services = [
   {
     number: '01',
     title: 'Offer & Strategy Clarity',
-    text: 'Positioning, service structure, buyer journey, messaging angles, and clear conversion priorities before design begins.',
+    text: 'Positioning, service structure, buyer journey, messaging angles, and conversion priorities.',
   },
   {
     number: '02',
     title: 'Premium Website Build',
-    text: 'Landing pages or complete websites designed for trust, clarity, speed, lead capture, and premium brand perception.',
+    text: 'Landing pages or websites designed for trust, clarity, speed, lead capture, and premium perception.',
   },
   {
     number: '03',
     title: 'Lead System Automation',
-    text: 'Forms, booking flows, CRM routing, email alerts, simple nurture, and backend workflow setup for cleaner operations.',
+    text: 'Forms, booking flows, CRM routing, email alerts, simple nurture, and backend workflows.',
   },
   {
     number: '04',
     title: 'Growth Content Foundation',
-    text: 'SEO-ready page structure, lead magnets, service pages, case study sections, and reusable conversion content blocks.',
+    text: 'SEO-ready page structure, lead magnets, service pages, case study sections, and conversion blocks.',
   },
 ];
 
@@ -60,7 +59,7 @@ const packages = [
     title: 'STARTER',
     price: '$1,500 - $3,000',
     timeline: '7 - 14 days',
-    ideal: 'Early-stage service brands that need a clean sales page fast.',
+    ideal: 'Early-stage brands needing a clean sales page fast.',
     deliverables: [
       'One premium landing page',
       'Offer and CTA structure',
@@ -73,7 +72,7 @@ const packages = [
     title: 'GROWTH',
     price: '$3,500 - $7,500',
     timeline: '3 - 5 weeks',
-    ideal: 'Growing brands that need a full website and better lead flow.',
+    ideal: 'Growing brands needing a full website and better lead flow.',
     deliverables: [
       'Five to seven website pages',
       'Conversion-focused layout',
@@ -86,7 +85,7 @@ const packages = [
     title: 'PREMIUM',
     price: '$8,000 - $15,000+',
     timeline: '6 - 10 weeks',
-    ideal: 'Established brands that need strategy, design, automation, and launch support.',
+    ideal: 'Established brands needing strategy, design, automation, and launch support.',
     deliverables: [
       'Full digital system',
       'Advanced automation flows',
@@ -169,15 +168,7 @@ function Bullet({ text, dark = false }: { text: string; dark?: boolean }) {
   );
 }
 
-function ServiceCard({
-  number,
-  title,
-  text,
-}: {
-  number: string;
-  title: string;
-  text: string;
-}) {
+function ServiceCard({ number, title, text }: { number: string; title: string; text: string }) {
   return (
     <View style={styles.serviceCard} wrap={false}>
       <PDFText style={styles.serviceNumber}>{number}</PDFText>
@@ -221,15 +212,7 @@ function PackageCard({
   );
 }
 
-function ProcessStep({
-  step,
-  title,
-  text,
-}: {
-  step: string;
-  title: string;
-  text: string;
-}) {
+function ProcessStep({ step, title, text }: { step: string; title: string; text: string }) {
   return (
     <View style={styles.processStep} wrap={false}>
       <PDFText style={styles.processNumber}>{step}</PDFText>
@@ -248,6 +231,7 @@ export default function TestDocument() {
       author="GREENSPACEDEV"
       subject="Services, package tiers, deliverables, timelines, pricing, add-ons, and consultation CTA"
     >
+      {/* Page 1: Centered & Minimal Cover Page */}
       <Page size="A4" style={styles.coverPage}>
         <Header label="SERVICES & PACKAGES" dark />
         <Footer dark />
@@ -257,37 +241,47 @@ export default function TestDocument() {
         <View style={styles.coverLineOne} />
         <View style={styles.coverLineTwo} />
 
-        <View style={styles.logoWrap}>
-          <View style={styles.logoMark}>
-            <PDFText style={styles.logoLetter}>G</PDFText>
+        <View style={styles.centerContainer}>
+          <View style={styles.logoWrap}>
+            <View style={styles.logoMark}>
+              <PDFText style={styles.logoLetter}>G</PDFText>
+            </View>
+            <PDFText style={styles.logoText}>GREENSPACEDEV</PDFText>
           </View>
-          <PDFText style={styles.logoText}>GREENSPACEDEV</PDFText>
-        </View>
 
-        <View style={styles.coverMain}>
-          <Eyebrow dark>CLIENT BUYING MENU</Eyebrow>
-          <PDFText style={styles.coverTitle}>SERVICES & PACKAGES</PDFText>
-          <PDFText style={styles.coverBody}>
-            A focused menu for brands that need a premium website, clear offer structure, lead capture, and practical automation without buying bloated agency theater.
-          </PDFText>
-        </View>
+          <View style={styles.coverMain}>
+            <Eyebrow dark>CLIENT BUYING MENU</Eyebrow>
+            <PDFText style={styles.coverTitle}>SERVICES & PACKAGES</PDFText>
+            <PDFText style={styles.coverBody}>
+              A focused menu for brands needing a premium website, clear offer structure, lead capture, and practical automation.
+            </PDFText>
+          </View>
 
-        <View style={styles.coverStats} wrap={false}>
-          <View style={styles.statBox}>
-            <PDFText style={styles.statLabel}>PROJECT RANGE</PDFText>
-            <PDFText style={styles.statValue}>$1.5K - $15K+</PDFText>
-          </View>
-          <View style={styles.statBox}>
-            <PDFText style={styles.statLabel}>TIMELINE</PDFText>
-            <PDFText style={styles.statValue}>1 - 10 WEEKS</PDFText>
-          </View>
-          <View style={styles.statBoxLast}>
-            <PDFText style={styles.statLabel}>BEST FOR</PDFText>
-            <PDFText style={styles.statValue}>SERVICE BRANDS</PDFText>
+          <View style={styles.coverStats} wrap={false}>
+            <View style={styles.statBox}>
+              <PDFText style={styles.statLabel}>PROJECT RANGE</PDFText>
+              <PDFText style={styles.statValue}>$1.5K - $15K+</PDFText>
+            </View>
+            <View style={styles.statBox}>
+              <PDFText style={styles.statLabel}>TIMELINE</PDFText>
+              <PDFText style={styles.statValue}>1 - 10 WEEKS</PDFText>
+            </View>
+            <View style={styles.statBoxLast}>
+              <PDFText style={styles.statLabel}>BEST FOR</PDFText>
+              <PDFText style={styles.statValue}>SERVICE BRANDS</PDFText>
+            </View>
           </View>
         </View>
+      </Page>
 
-        <View style={styles.servicesBlock}>
+      {/* Page 2: Core Services */}
+      <Page size="A4" style={styles.coverPage}>
+        <Header label="CORE SERVICES" dark />
+        <Footer dark />
+        
+        <View style={styles.coverOrbTwo} />
+        
+        <View style={styles.servicesPageBlock}>
           <View style={styles.sectionHeaderDark}>
             <PDFText style={styles.sectionLabelDark}>WHAT CLIENTS CAN BUY</PDFText>
             <PDFText style={styles.sectionTitleDark}>CORE SERVICES</PDFText>
@@ -306,6 +300,7 @@ export default function TestDocument() {
         </View>
       </Page>
 
+      {/* Page 3: Pricing, Delivery & CTA */}
       <Page size="A4" style={styles.contentPage}>
         <Header label="PACKAGE TIERS" />
         <Footer />
@@ -314,7 +309,7 @@ export default function TestDocument() {
           <Eyebrow>PRICING & DELIVERY</Eyebrow>
           <PDFText style={styles.pageTitle}>CHOOSE THE DEPTH OF THE SYSTEM.</PDFText>
           <PDFText style={styles.pageBody}>
-            Pricing ranges depend on page count, automation depth, integrations, copy support, and asset quality. Suspiciously, the price depends on the work.
+            Pricing ranges depend on page count, automation depth, integrations, copy support, and asset quality.
           </PDFText>
         </View>
 
@@ -376,28 +371,37 @@ export default function TestDocument() {
 const styles = StyleSheet.create({
   coverPage: {
     position: 'relative',
-    paddingTop: 66,
+    paddingTop: 50,
     paddingRight: 44,
-    paddingBottom: 56,
+    paddingBottom: 50,
     paddingLeft: 44,
     backgroundColor: palette.deep,
-    color: palette.white,
     fontFamily: BODY_FONT,
+    display: 'flex',
+    flexDirection: 'column',
   },
   contentPage: {
     position: 'relative',
-    paddingTop: 66,
+    paddingTop: 65,
     paddingRight: 44,
-    paddingBottom: 56,
+    paddingBottom: 50,
     paddingLeft: 44,
     backgroundColor: palette.cream,
     color: palette.ink,
     fontFamily: BODY_FONT,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  centerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingBottom: 60, 
   },
 
   header: {
     position: 'absolute',
-    top: 28,
+    top: 24,
     left: 44,
     right: 44,
     paddingBottom: 10,
@@ -406,7 +410,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   headerLight: {
-    borderBottomColor: palette.line,
+    borderBottomColor: palette.moss,
   },
   headerDark: {
     borderBottomColor: '#36583D',
@@ -427,7 +431,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 44,
     right: 44,
-    bottom: 26,
+    bottom: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -463,7 +467,7 @@ const styles = StyleSheet.create({
   },
   coverLineOne: {
     position: 'absolute',
-    top: 350,
+    top: '60%',
     left: 44,
     right: 44,
     borderBottomWidth: 1,
@@ -471,7 +475,7 @@ const styles = StyleSheet.create({
   },
   coverLineTwo: {
     position: 'absolute',
-    top: 120,
+    top: 100,
     bottom: 92,
     right: 172,
     borderLeftWidth: 1,
@@ -481,26 +485,26 @@ const styles = StyleSheet.create({
   logoWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 4,
+    marginBottom: 45,
   },
   logoMark: {
-    width: 44,
-    height: 44,
-    borderRadius: 44,
+    width: 66,
+    height: 66,
+    borderRadius: 66,
     backgroundColor: palette.cream,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
+    marginRight: 15,
   },
   logoLetter: {
     fontFamily: 'Anton',
-    fontSize: 28,
+    fontSize: 42,
     lineHeight: 1,
     color: palette.primary,
   },
   logoText: {
     fontFamily: 'Anton',
-    fontSize: 25,
+    fontSize: 37,
     color: palette.cream,
     lineHeight: 1,
   },
@@ -509,7 +513,7 @@ const styles = StyleSheet.create({
     fontSize: 8,
     letterSpacing: 2.2,
     fontFamily: BODY_FONT,
-    marginBottom: 12,
+    marginBottom: 10,
   },
   eyebrowLight: {
     color: palette.primary,
@@ -520,32 +524,31 @@ const styles = StyleSheet.create({
 
   coverMain: {
     width: 440,
-    marginTop: 82,
+    marginBottom: 30,
   },
   coverTitle: {
-    width: 430,
+    width: 450,
     fontFamily: 'Anton',
-    fontSize: 62,
-    lineHeight: 0.92,
+    fontSize: 60,
+    lineHeight: 0.95,
     color: palette.cream,
-    marginBottom: 20,
+    marginBottom: 16,
   },
   coverBody: {
     width: 390,
-    fontSize: 11.5,
-    lineHeight: 1.48,
-    color: palette.softWhite,
+    fontSize: 11,
+    lineHeight: 1.4,
+    color: palette.olive,
     fontFamily: BODY_FONT,
   },
 
   coverStats: {
-    marginTop: 42,
     flexDirection: 'row',
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: '#36583D',
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingTop: 16,
+    paddingBottom: 16,
   },
   statBox: {
     width: 160,
@@ -571,14 +574,14 @@ const styles = StyleSheet.create({
     color: palette.cream,
   },
 
-  servicesBlock: {
-    marginTop: 34,
+  servicesPageBlock: {
+    marginTop: 50,
   },
   sectionHeaderDark: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    marginBottom: 16,
+    marginBottom: 24,
   },
   sectionLabelDark: {
     fontSize: 7.5,
@@ -588,7 +591,7 @@ const styles = StyleSheet.create({
   },
   sectionTitleDark: {
     fontFamily: 'Anton',
-    fontSize: 30,
+    fontSize: 34,
     color: palette.cream,
     lineHeight: 1,
   },
@@ -597,21 +600,21 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   serviceCard: {
-    width: 242,
-    minHeight: 128,
+    width: 246,
+    minHeight: 125,
     backgroundColor: '#173623',
     borderWidth: 1,
     borderColor: '#3D6040',
-    borderRadius: 14,
-    padding: 16,
+    borderRadius: 12,
+    padding: 18,
     marginRight: 14,
-    marginBottom: 14,
+    marginBottom: 16,
   },
   serviceNumber: {
     fontFamily: 'Anton',
-    fontSize: 22,
-    color: palette.accent,
-    marginBottom: 8,
+    fontSize: 24,
+    color: palette.moss,
+    marginBottom: 10,
     lineHeight: 1,
   },
   serviceTitle: {
@@ -622,22 +625,22 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   serviceText: {
-    fontSize: 8.8,
-    lineHeight: 1.42,
-    color: palette.softWhite,
+    fontSize: 9,
+    lineHeight: 1.45,
+    color: palette.olive,
     fontFamily: BODY_FONT,
   },
 
   introBlock: {
     width: 460,
-    marginBottom: 20,
+    marginBottom: 16,
   },
   pageTitle: {
     fontFamily: 'Anton',
-    fontSize: 42,
+    fontSize: 38,
     lineHeight: 0.98,
     color: palette.ink,
-    marginBottom: 12,
+    marginBottom: 10,
   },
   pageBody: {
     width: 405,
@@ -649,21 +652,20 @@ const styles = StyleSheet.create({
 
   packagesGrid: {
     flexDirection: 'row',
-    marginBottom: 17,
+    marginBottom: 16,
   },
   packageCard: {
     width: 159,
-    minHeight: 247,
-    backgroundColor: palette.pale,
+    backgroundColor: palette.olive,
     borderWidth: 1,
     borderColor: palette.sage,
-    borderRadius: 14,
+    borderRadius: 12,
     padding: 14,
     marginRight: 12,
   },
   packageTitle: {
     fontFamily: 'Anton',
-    fontSize: 24,
+    fontSize: 22,
     lineHeight: 1,
     color: palette.primary,
     marginBottom: 6,
@@ -729,9 +731,6 @@ const styles = StyleSheet.create({
   bulletTextLight: {
     color: palette.ink,
   },
-  bulletTextDark: {
-    color: palette.softWhite,
-  },
 
   bottomGrid: {
     flexDirection: 'row',
@@ -742,16 +741,16 @@ const styles = StyleSheet.create({
     backgroundColor: palette.cream,
     borderWidth: 1,
     borderColor: palette.sage,
-    borderRadius: 14,
+    borderRadius: 12,
     padding: 16,
     marginRight: 14,
   },
   processCard: {
     flex: 1,
-    backgroundColor: palette.pale,
+    backgroundColor: palette.olive,
     borderWidth: 1,
     borderColor: palette.sage,
-    borderRadius: 14,
+    borderRadius: 12,
     padding: 16,
   },
   smallLabel: {
@@ -763,7 +762,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontFamily: 'Anton',
-    fontSize: 23,
+    fontSize: 21,
     color: palette.ink,
     marginBottom: 10,
     lineHeight: 1,
@@ -774,21 +773,21 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   processNumber: {
-    width: 30,
+    width: 28,
     fontFamily: 'Anton',
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: 1,
     color: palette.primary,
   },
   processContent: {
     flex: 1,
     borderBottomWidth: 1,
-    borderBottomColor: palette.sage,
+    borderBottomColor: palette.moss,
     paddingBottom: 7,
   },
   processTitle: {
     fontFamily: 'Anton',
-    fontSize: 14,
+    fontSize: 13,
     lineHeight: 1,
     color: palette.ink,
     marginBottom: 3,
@@ -801,14 +800,11 @@ const styles = StyleSheet.create({
   },
 
   ctaBlock: {
-    position: 'absolute',
-    left: 44,
-    right: 44,
-    bottom: 56,
     backgroundColor: palette.primary,
-    borderRadius: 18,
+    borderRadius: 14,
     padding: 20,
     flexDirection: 'row',
+    marginTop: 'auto',
   },
   ctaLeft: {
     width: 330,
@@ -823,7 +819,7 @@ const styles = StyleSheet.create({
   },
   ctaTitle: {
     fontFamily: 'Anton',
-    fontSize: 27,
+    fontSize: 25,
     lineHeight: 1,
     color: palette.cream,
     marginBottom: 9,
@@ -831,13 +827,13 @@ const styles = StyleSheet.create({
   ctaBody: {
     fontSize: 9,
     lineHeight: 1.4,
-    color: palette.softWhite,
+    color: palette.olive,
     fontFamily: BODY_FONT,
   },
   ctaRight: {
     flex: 1,
     backgroundColor: palette.cream,
-    borderRadius: 12,
+    borderRadius: 10,
     padding: 14,
     justifyContent: 'center',
   },
