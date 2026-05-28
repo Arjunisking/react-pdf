@@ -19,76 +19,119 @@ Font.registerHyphenationCallback((word) => [word]);
 const BODY_FONT = 'Helvetica';
 
 const palette = {
-  cream: '#FEFAE0',
-  moss: '#A3B18A',
-  sage: '#CCD5AE',
-  olive: '#E9EDC9',
-  forest: '#01472E',
+  primary: '#01472E',
   deep: '#0F1F17',
+  cream: '#FEFAE0',
+  pale: '#E9EDC9',
+  sage: '#CCD5AE',
+  accent: '#A3B18A',
   ink: '#101811',
   muted: '#5F6B5A',
   line: '#D8DEC1',
   white: '#FFFFFF',
+  softWhite: '#EAF0D8',
 };
-
-const contact = [
-  { label: 'Email', value: 'hello@greenspacedev.com', href: 'mailto:hello@greenspacedev.com' },
-  { label: 'Phone', value: '+91 98765 43210' },
-  { label: 'Website', value: 'greenspacedev.com', href: 'https://greenspacedev.com' },
-  { label: 'Location', value: 'India' },
-];
-
-const socials = [
-  { label: 'Instagram', value: 'instagram.com/greenspacedev', href: 'https://instagram.com/greenspacedev' },
-  { label: 'LinkedIn', value: 'linkedin.com/company/greenspacedev', href: 'https://linkedin.com/company/greenspacedev' },
-  { label: 'YouTube', value: 'youtube.com/@greenspacedev', href: 'https://youtube.com/@greenspacedev' },
-  { label: 'Twitter / X', value: 'twitter.com/greenspacedev', href: 'https://twitter.com/greenspacedev' },
-];
-
-const targetCustomers = [
-  'Sustainable lifestyle brands',
-  'Eco-resorts and hospitality spaces',
-  'Wellness businesses',
-  'Organic product companies',
-  'Interior and architecture studios',
-  'Premium green living brands',
-];
 
 const services = [
   {
     number: '01',
-    title: 'Custom Web Development',
-    text: 'Premium websites built for trust, speed, clarity, and conversion across modern eco-conscious brands.',
+    title: 'Offer & Strategy Clarity',
+    text: 'Positioning, service structure, buyer journey, messaging angles, and clear conversion priorities before design begins.',
   },
   {
     number: '02',
-    title: 'SEO Architecture',
-    text: 'Search-ready content structures, landing pages, and technical foundations designed to compound visibility.',
+    title: 'Premium Website Build',
+    text: 'Landing pages or complete websites designed for trust, clarity, speed, lead capture, and premium brand perception.',
   },
   {
     number: '03',
-    title: 'Brand Identity Systems',
-    text: 'Visual direction, typography, colors, messaging, and digital assets that make the brand feel premium and consistent.',
+    title: 'Lead System Automation',
+    text: 'Forms, booking flows, CRM routing, email alerts, simple nurture, and backend workflow setup for cleaner operations.',
   },
   {
     number: '04',
-    title: 'Digital Growth Ecosystems',
-    text: 'Integrated website, content, lead capture, and automation systems that turn attention into qualified opportunities.',
+    title: 'Growth Content Foundation',
+    text: 'SEO-ready page structure, lead magnets, service pages, case study sections, and reusable conversion content blocks.',
   },
 ];
 
-const values = [
-  'Premium design without visual noise',
-  'Organic aesthetics with commercial clarity',
-  'Technology used only where it improves outcomes',
-  'Long-term digital assets over short-term decoration',
+const packages = [
+  {
+    title: 'STARTER',
+    price: '$1,500 - $3,000',
+    timeline: '7 - 14 days',
+    ideal: 'Early-stage service brands that need a clean sales page fast.',
+    deliverables: [
+      'One premium landing page',
+      'Offer and CTA structure',
+      'Lead form setup',
+      'Booking link placement',
+      'Basic analytics setup',
+    ],
+  },
+  {
+    title: 'GROWTH',
+    price: '$3,500 - $7,500',
+    timeline: '3 - 5 weeks',
+    ideal: 'Growing brands that need a full website and better lead flow.',
+    deliverables: [
+      'Five to seven website pages',
+      'Conversion-focused layout',
+      'CRM or sheet routing',
+      'Email notification workflow',
+      'SEO page foundation',
+    ],
+  },
+  {
+    title: 'PREMIUM',
+    price: '$8,000 - $15,000+',
+    timeline: '6 - 10 weeks',
+    ideal: 'Established brands that need strategy, design, automation, and launch support.',
+    deliverables: [
+      'Full digital system',
+      'Advanced automation flows',
+      'Lead magnet funnel',
+      'Content architecture',
+      'Launch and handover support',
+    ],
+  },
+];
+
+const addOns = [
+  'Extra landing page: $500 - $1,500',
+  'CRM setup: $750 - $2,000',
+  'Email nurture sequence: $600 - $1,800',
+  'SEO content pack: $800 - $2,500',
+  'Monthly optimization: $1,000 - $3,000',
+];
+
+const process = [
+  {
+    step: '01',
+    title: 'Audit',
+    text: 'We review your offer, current assets, website, sales process, and lead capture gaps.',
+  },
+  {
+    step: '02',
+    title: 'Build',
+    text: 'We design the pages, structure the message, and connect the required systems.',
+  },
+  {
+    step: '03',
+    title: 'Launch',
+    text: 'We test the flow, prepare handover notes, and recommend the next best growth actions.',
+  },
 ];
 
 function Header({ dark = false, label }: { dark?: boolean; label: string }) {
   return (
     <View style={[styles.header, dark ? styles.headerDark : styles.headerLight]} fixed>
-      <PDFText style={[styles.headerText, dark ? styles.lightText : styles.darkText]}>{label}</PDFText>
-      <PDFText style={[styles.headerText, dark ? styles.lightText : styles.darkText]}>GREENSPACEDEV</PDFText>
+      <PDFText style={[styles.headerText, dark ? styles.headerTextDark : styles.headerTextLight]}>
+        {label}
+      </PDFText>
+      <PDFText style={[styles.headerText, dark ? styles.headerTextDark : styles.headerTextLight]}>
+        GREENSPACEDEV
+      </PDFText>
     </View>
   );
 }
@@ -96,46 +139,13 @@ function Header({ dark = false, label }: { dark?: boolean; label: string }) {
 function Footer({ dark = false }: { dark?: boolean }) {
   return (
     <View style={styles.footer} fixed>
-      <PDFText style={[styles.footerText, dark ? styles.footerDark : styles.footerLight]}>
-        PREMIUM ECO-DIGITAL COMPANY PROFILE
+      <PDFText style={[styles.footerText, dark ? styles.footerTextDark : styles.footerTextLight]}>
+        SERVICES & PACKAGES
       </PDFText>
       <PDFText
-        style={[styles.footerText, dark ? styles.footerDark : styles.footerLight]}
+        style={[styles.footerText, dark ? styles.footerTextDark : styles.footerTextLight]}
         render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
       />
-    </View>
-  );
-}
-
-function ProfilePage({
-  label,
-  dark = false,
-  children,
-}: {
-  label: string;
-  dark?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Page size="A4" style={dark ? styles.darkPage : styles.page}>
-      <Header label={label} dark={dark} />
-      {children}
-      <Footer dark={dark} />
-    </Page>
-  );
-}
-
-function LogoMark({ large = false, light = false }: { large?: boolean; light?: boolean }) {
-  return (
-    <View style={large ? styles.logoLarge : styles.logoSmall}>
-      <View style={[large ? styles.logoCircleLarge : styles.logoCircleSmall, light ? styles.logoCircleLight : styles.logoCircleDark]}>
-        <PDFText style={[large ? styles.logoLeafLarge : styles.logoLeafSmall, light ? styles.logoLeafLight : styles.logoLeafDark]}>
-          G
-        </PDFText>
-      </View>
-      <PDFText style={[large ? styles.logoWordLarge : styles.logoWordSmall, light ? styles.logoWordLight : styles.logoWordDark]}>
-        GREENSPACEDEV
-      </PDFText>
     </View>
   );
 }
@@ -143,36 +153,6 @@ function LogoMark({ large = false, light = false }: { large?: boolean; light?: b
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
     <PDFText style={[styles.eyebrow, dark ? styles.eyebrowDark : styles.eyebrowLight]}>
-      {children}
-    </PDFText>
-  );
-}
-
-function Title({
-  children,
-  dark = false,
-  size = 'normal',
-}: {
-  children: React.ReactNode;
-  dark?: boolean;
-  size?: 'normal' | 'large' | 'hero';
-}) {
-  return (
-    <PDFText
-      style={[
-        styles.title,
-        size === 'hero' ? styles.heroTitle : size === 'large' ? styles.largeTitle : styles.normalTitle,
-        dark ? styles.titleDark : styles.titleLight,
-      ]}
-    >
-      {children}
-    </PDFText>
-  );
-}
-
-function Body({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <PDFText style={[styles.body, dark ? styles.bodyDark : styles.bodyLight]}>
       {children}
     </PDFText>
   );
@@ -207,64 +187,56 @@ function ServiceCard({
   );
 }
 
-function MiniIcon({ type }: { type: 'web' | 'seo' | 'brand' | 'growth' }) {
+function PackageCard({
+  title,
+  price,
+  timeline,
+  ideal,
+  deliverables,
+}: {
+  title: string;
+  price: string;
+  timeline: string;
+  ideal: string;
+  deliverables: string[];
+}) {
   return (
-    <View style={styles.iconBox}>
-      {type === 'web' ? (
-        <>
-          <View style={styles.iconLineWide} />
-          <View style={styles.iconLineShort} />
-          <View style={styles.iconLineMid} />
-        </>
-      ) : null}
-      {type === 'seo' ? (
-        <>
-          <View style={styles.iconCircle} />
-          <View style={styles.iconHandle} />
-        </>
-      ) : null}
-      {type === 'brand' ? (
-        <>
-          <View style={styles.iconLeafOne} />
-          <View style={styles.iconLeafTwo} />
-        </>
-      ) : null}
-      {type === 'growth' ? (
-        <>
-          <View style={styles.iconBarOne} />
-          <View style={styles.iconBarTwo} />
-          <View style={styles.iconBarThree} />
-        </>
-      ) : null}
+    <View style={styles.packageCard} wrap={false}>
+      <PDFText style={styles.packageTitle}>{title}</PDFText>
+      <PDFText style={styles.packagePrice}>{price}</PDFText>
+
+      <View style={styles.packageLine} />
+
+      <PDFText style={styles.packageLabel}>TIMELINE</PDFText>
+      <PDFText style={styles.packageMeta}>{timeline}</PDFText>
+
+      <PDFText style={styles.packageLabel}>IDEAL CUSTOMER</PDFText>
+      <PDFText style={styles.packageIdeal}>{ideal}</PDFText>
+
+      <PDFText style={styles.packageLabel}>DELIVERABLES</PDFText>
+      {deliverables.map((item) => (
+        <Bullet key={item} text={item} />
+      ))}
     </View>
   );
 }
 
-function ContactRow({
-  label,
-  value,
-  href,
-  dark = false,
+function ProcessStep({
+  step,
+  title,
+  text,
 }: {
-  label: string;
-  value: string;
-  href?: string;
-  dark?: boolean;
+  step: string;
+  title: string;
+  text: string;
 }) {
   return (
-    <View style={styles.contactRow} wrap={false}>
-      <PDFText style={[styles.contactLabel, dark ? styles.contactLabelDark : styles.contactLabelLight]}>
-        {label}
-      </PDFText>
-      {href ? (
-        <Link src={href} style={[styles.contactValue, dark ? styles.contactValueDark : styles.contactValueLight]}>
-          {value}
-        </Link>
-      ) : (
-        <PDFText style={[styles.contactValue, dark ? styles.contactValueDark : styles.contactValueLight]}>
-          {value}
-        </PDFText>
-      )}
+    <View style={styles.processStep} wrap={false}>
+      <PDFText style={styles.processNumber}>{step}</PDFText>
+      <View style={styles.processContent}>
+        <PDFText style={styles.processTitle}>{title}</PDFText>
+        <PDFText style={styles.processText}>{text}</PDFText>
+      </View>
     </View>
   );
 }
@@ -272,176 +244,129 @@ function ContactRow({
 export default function TestDocument() {
   return (
     <Document
-      title="GREENSPACEDEV Company Profile"
+      title="GREENSPACEDEV Services & Packages"
       author="GREENSPACEDEV"
-      subject="Eco-conscious digital company profile"
+      subject="Services, package tiers, deliverables, timelines, pricing, add-ons, and consultation CTA"
     >
       <Page size="A4" style={styles.coverPage}>
+        <Header label="SERVICES & PACKAGES" dark />
+        <Footer dark />
+
         <View style={styles.coverOrbOne} />
         <View style={styles.coverOrbTwo} />
-        <View style={styles.coverGridLineOne} />
-        <View style={styles.coverGridLineTwo} />
+        <View style={styles.coverLineOne} />
+        <View style={styles.coverLineTwo} />
 
-        <View style={styles.coverTop}>
-          <LogoMark large />
+        <View style={styles.logoWrap}>
+          <View style={styles.logoMark}>
+            <PDFText style={styles.logoLetter}>G</PDFText>
+          </View>
+          <PDFText style={styles.logoText}>GREENSPACEDEV</PDFText>
         </View>
 
-        <View style={styles.coverContent}>
-          <PDFText style={styles.coverLabel}>COMPANY PROFILE</PDFText>
-          <PDFText style={styles.coverTitle}>Elevating Digital Spaces for Eco-Conscious Brands.</PDFText>
-          <PDFText style={styles.coverTagline}>
-            GREENSPACEDEV builds premium digital ecosystems for brands that want their online presence to feel organic, refined, and commercially useful.
+        <View style={styles.coverMain}>
+          <Eyebrow dark>CLIENT BUYING MENU</Eyebrow>
+          <PDFText style={styles.coverTitle}>SERVICES & PACKAGES</PDFText>
+          <PDFText style={styles.coverBody}>
+            A focused menu for brands that need a premium website, clear offer structure, lead capture, and practical automation without buying bloated agency theater.
           </PDFText>
         </View>
 
-        <View style={styles.coverBottom}>
-          <PDFText style={styles.coverBottomText}>EARTH-TONED DIGITAL DESIGN</PDFText>
-          <PDFText style={styles.coverBottomText}>WEBSITE · SEO · BRAND IDENTITY</PDFText>
+        <View style={styles.coverStats} wrap={false}>
+          <View style={styles.statBox}>
+            <PDFText style={styles.statLabel}>PROJECT RANGE</PDFText>
+            <PDFText style={styles.statValue}>$1.5K - $15K+</PDFText>
+          </View>
+          <View style={styles.statBox}>
+            <PDFText style={styles.statLabel}>TIMELINE</PDFText>
+            <PDFText style={styles.statValue}>1 - 10 WEEKS</PDFText>
+          </View>
+          <View style={styles.statBoxLast}>
+            <PDFText style={styles.statLabel}>BEST FOR</PDFText>
+            <PDFText style={styles.statValue}>SERVICE BRANDS</PDFText>
+          </View>
+        </View>
+
+        <View style={styles.servicesBlock}>
+          <View style={styles.sectionHeaderDark}>
+            <PDFText style={styles.sectionLabelDark}>WHAT CLIENTS CAN BUY</PDFText>
+            <PDFText style={styles.sectionTitleDark}>CORE SERVICES</PDFText>
+          </View>
+
+          <View style={styles.servicesGrid}>
+            {services.map((service) => (
+              <ServiceCard
+                key={service.number}
+                number={service.number}
+                title={service.title}
+                text={service.text}
+              />
+            ))}
+          </View>
         </View>
       </Page>
 
-      <ProfilePage label="WHO WE ARE">
-        <View style={styles.pageTwoGrid}>
-          <View style={styles.pageTwoMain}>
-            <Eyebrow>WHO WE ARE</Eyebrow>
-            <Title size="large">A PREMIUM DIGITAL STUDIO WITH AN ECO-CONSCIOUS POINT OF VIEW.</Title>
-            <Body>
-              GREENSPACEDEV helps modern brands build a refined digital presence rooted in clarity, trust, and organic visual identity.
-            </Body>
-            <Body>
-              We work with businesses that care about quality, sustainability, wellness, nature, and better living. The goal is simple: make the brand look credible, feel premium, and convert attention into real business outcomes.
-            </Body>
+      <Page size="A4" style={styles.contentPage}>
+        <Header label="PACKAGE TIERS" />
+        <Footer />
 
-            <View style={styles.valuesBox} wrap={false}>
-              <PDFText style={styles.valuesTitle}>WHAT WE STAND FOR</PDFText>
-              {values.map((item) => (
-                <Bullet key={item} text={item} />
-              ))}
-            </View>
+        <View style={styles.introBlock}>
+          <Eyebrow>PRICING & DELIVERY</Eyebrow>
+          <PDFText style={styles.pageTitle}>CHOOSE THE DEPTH OF THE SYSTEM.</PDFText>
+          <PDFText style={styles.pageBody}>
+            Pricing ranges depend on page count, automation depth, integrations, copy support, and asset quality. Suspiciously, the price depends on the work.
+          </PDFText>
+        </View>
+
+        <View style={styles.packagesGrid}>
+          {packages.map((item) => (
+            <PackageCard
+              key={item.title}
+              title={item.title}
+              price={item.price}
+              timeline={item.timeline}
+              ideal={item.ideal}
+              deliverables={item.deliverables}
+            />
+          ))}
+        </View>
+
+        <View style={styles.bottomGrid}>
+          <View style={styles.addOnCard} wrap={false}>
+            <PDFText style={styles.smallLabel}>OPTIONAL ADD-ONS</PDFText>
+            <PDFText style={styles.cardTitle}>EXPAND THE SYSTEM</PDFText>
+            {addOns.map((item) => (
+              <Bullet key={item} text={item} />
+            ))}
           </View>
 
-          <View style={styles.founderBox} wrap={false}>
-            <PDFText style={styles.quoteMark}>“</PDFText>
-            <PDFText style={styles.founderTitle}>Founder Note</PDFText>
-            <PDFText style={styles.founderText}>
-              I started GREENSPACEDEV because many thoughtful brands struggle to look as premium online as they are in real life. The mission is to build digital systems that feel calm, natural, high-end, and useful without becoming generic template work.
+          <View style={styles.processCard} wrap={false}>
+            <PDFText style={styles.smallLabel}>DELIVERY FLOW</PDFText>
+            <PDFText style={styles.cardTitle}>HOW IT WORKS</PDFText>
+            {process.map((item) => (
+              <ProcessStep key={item.step} step={item.step} title={item.title} text={item.text} />
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.ctaBlock} wrap={false}>
+          <View style={styles.ctaLeft}>
+            <PDFText style={styles.ctaLabel}>CONSULTATION CTA</PDFText>
+            <PDFText style={styles.ctaTitle}>BOOK A 30-MINUTE SYSTEM CLARITY CALL</PDFText>
+            <PDFText style={styles.ctaBody}>
+              We map your current offer, recommend the right package, and identify the shortest path to a cleaner sales system.
             </PDFText>
-            <PDFText style={styles.founderText}>
-              We believe design should create trust, not noise. Every page, word, color, and system should move the brand closer to clarity.
-            </PDFText>
-            <PDFText style={styles.signature}>Founder</PDFText>
-            <PDFText style={styles.signatureBrand}>GREENSPACEDEV</PDFText>
-          </View>
-        </View>
-      </ProfilePage>
-
-      <ProfilePage label="MARKET AND MISSION" dark>
-        <View style={styles.marketGrid}>
-          <View style={styles.marketLeft}>
-            <Eyebrow dark>THE MARKET GAP</Eyebrow>
-            <Title dark size="large">SUSTAINABLE BRANDS NEED MORE THAN A GOOD-LOOKING WEBSITE.</Title>
-            <Body dark>
-              Many eco-conscious companies have strong products, thoughtful missions, and real customer value, but their digital presence feels plain, inconsistent, or unfinished.
-            </Body>
-            <Body dark>
-              The gap is not only design. It is trust, positioning, conversion structure, search visibility, and a brand system that feels premium without losing its natural character.
-            </Body>
           </View>
 
-          <View style={styles.targetBox} wrap={false}>
-            <PDFText style={styles.targetTitle}>TARGET CUSTOMERS</PDFText>
-            {targetCustomers.map((item) => (
-              <Bullet key={item} text={item} dark />
-            ))}
+          <View style={styles.ctaRight}>
+            <PDFText style={styles.ctaSmall}>START HERE</PDFText>
+            <Link src="mailto:hello@greenspacedev.com" style={styles.ctaLink}>
+              hello@greenspacedev.com
+            </Link>
+            <Link src="https://greenspacedev.com" style={styles.ctaLink}>
+              greenspacedev.com
+            </Link>
           </View>
-        </View>
-
-        <View style={styles.missionBlock} wrap={false}>
-          <PDFText style={styles.missionSmall}>MISSION STATEMENT</PDFText>
-          <PDFText style={styles.missionText}>
-            To help eco-conscious brands build digital ecosystems that are beautiful, strategic, searchable, and built for long-term growth.
-          </PDFText>
-        </View>
-      </ProfilePage>
-
-      <ProfilePage label="WHAT WE DO">
-        <Eyebrow>WHAT WE DO</Eyebrow>
-        <Title size="large">FOUR CORE SERVICES. ONE CLEAR DIGITAL SYSTEM.</Title>
-        <Body>
-          We keep the offer focused because bloated service menus usually mean nobody knows what they are actually selling. These four pillars cover the main digital foundation a premium eco-conscious brand needs.
-        </Body>
-
-        <View style={styles.servicesGrid}>
-          <View style={styles.serviceWrap}>
-            <MiniIcon type="web" />
-            <ServiceCard number={services[0].number} title={services[0].title} text={services[0].text} />
-          </View>
-          <View style={styles.serviceWrap}>
-            <MiniIcon type="seo" />
-            <ServiceCard number={services[1].number} title={services[1].title} text={services[1].text} />
-          </View>
-          <View style={styles.serviceWrap}>
-            <MiniIcon type="brand" />
-            <ServiceCard number={services[2].number} title={services[2].title} text={services[2].text} />
-          </View>
-          <View style={styles.serviceWrap}>
-            <MiniIcon type="growth" />
-            <ServiceCard number={services[3].number} title={services[3].title} text={services[3].text} />
-          </View>
-        </View>
-
-        <View style={styles.bottomStatement} wrap={false}>
-          <PDFText style={styles.bottomStatementTitle}>OUTCOME</PDFText>
-          <PDFText style={styles.bottomStatementText}>
-            A digital presence that looks premium, communicates clearly, ranks better, and supports business development without feeling artificial.
-          </PDFText>
-        </View>
-      </ProfilePage>
-
-      <Page size="A4" style={styles.backCover}>
-        <View style={styles.backSolidBlock} />
-        <View style={styles.backTop}>
-          <LogoMark light />
-        </View>
-
-        <View style={styles.backContent}>
-          <PDFText style={styles.backLabel}>CONNECT WITH US</PDFText>
-          <PDFText style={styles.backTitle}>Let’s build your digital ecosystem.</PDFText>
-          <PDFText style={styles.backBody}>
-            Reach out to start the conversation. We will help you clarify the right digital foundation for your brand, not bury you in agency jargon like civilization has not suffered enough.
-          </PDFText>
-        </View>
-
-        <View style={styles.backGrid}>
-          <View style={styles.backContactCard} wrap={false}>
-            <PDFText style={styles.backCardTitle}>CONTACT DETAILS</PDFText>
-            {contact.map((item) => (
-              <ContactRow
-                key={item.label}
-                label={item.label}
-                value={item.value}
-                href={item.href}
-              />
-            ))}
-          </View>
-
-          <View style={styles.backSocialCard} wrap={false}>
-            <PDFText style={styles.backSocialTitle}>SOCIAL LINKS</PDFText>
-            {socials.map((item) => (
-              <ContactRow
-                key={item.label}
-                label={item.label}
-                value={item.value}
-                href={item.href}
-                dark
-              />
-            ))}
-          </View>
-        </View>
-
-        <View style={styles.backFooter}>
-          <PDFText style={styles.backFooterText}>GREENSPACEDEV</PDFText>
-          <PDFText style={styles.backFooterText}>PREMIUM ECO-DIGITAL SYSTEMS</PDFText>
         </View>
       </Page>
     </Document>
@@ -449,17 +374,7 @@ export default function TestDocument() {
 }
 
 const styles = StyleSheet.create({
-  page: {
-    position: 'relative',
-    paddingTop: 66,
-    paddingRight: 44,
-    paddingBottom: 56,
-    paddingLeft: 44,
-    backgroundColor: palette.cream,
-    color: palette.ink,
-    fontFamily: BODY_FONT,
-  },
-  darkPage: {
+  coverPage: {
     position: 'relative',
     paddingTop: 66,
     paddingRight: 44,
@@ -469,6 +384,17 @@ const styles = StyleSheet.create({
     color: palette.white,
     fontFamily: BODY_FONT,
   },
+  contentPage: {
+    position: 'relative',
+    paddingTop: 66,
+    paddingRight: 44,
+    paddingBottom: 56,
+    paddingLeft: 44,
+    backgroundColor: palette.cream,
+    color: palette.ink,
+    fontFamily: BODY_FONT,
+  },
+
   header: {
     position: 'absolute',
     top: 28,
@@ -490,625 +416,444 @@ const styles = StyleSheet.create({
     letterSpacing: 1.6,
     fontFamily: BODY_FONT,
   },
-  lightText: {
+  headerTextLight: {
+    color: palette.primary,
+  },
+  headerTextDark: {
     color: palette.sage,
   },
-  darkText: {
-    color: palette.forest,
-  },
+
   footer: {
     position: 'absolute',
-    bottom: 26,
     left: 44,
     right: 44,
+    bottom: 26,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   footerText: {
     fontSize: 7,
-    letterSpacing: 1,
+    letterSpacing: 1.1,
     fontFamily: BODY_FONT,
   },
-  footerLight: {
+  footerTextLight: {
     color: palette.muted,
   },
-  footerDark: {
+  footerTextDark: {
     color: palette.sage,
   },
 
-  coverPage: {
-    position: 'relative',
-    padding: 48,
-    backgroundColor: palette.cream,
-    color: palette.ink,
-    fontFamily: BODY_FONT,
-  },
   coverOrbOne: {
     position: 'absolute',
-    width: 430,
-    height: 430,
-    borderRadius: 430,
-    right: -185,
-    top: -110,
-    backgroundColor: palette.olive,
+    width: 360,
+    height: 360,
+    borderRadius: 360,
+    right: -150,
+    top: -100,
+    backgroundColor: '#183824',
   },
   coverOrbTwo: {
     position: 'absolute',
-    width: 275,
-    height: 275,
-    borderRadius: 275,
-    left: -125,
-    bottom: -80,
-    backgroundColor: palette.sage,
+    width: 230,
+    height: 230,
+    borderRadius: 230,
+    left: -95,
+    bottom: -78,
+    backgroundColor: '#1B3D29',
   },
-  coverGridLineOne: {
+  coverLineOne: {
     position: 'absolute',
-    top: 250,
-    left: 48,
-    right: 48,
+    top: 350,
+    left: 44,
+    right: 44,
     borderBottomWidth: 1,
-    borderBottomColor: palette.line,
+    borderBottomColor: '#36583D',
   },
-  coverGridLineTwo: {
+  coverLineTwo: {
     position: 'absolute',
-    top: 252,
-    bottom: 72,
-    left: 390,
+    top: 120,
+    bottom: 92,
+    right: 172,
     borderLeftWidth: 1,
-    borderLeftColor: palette.line,
-  },
-  coverTop: {
-    marginTop: 10,
-  },
-  coverContent: {
-    position: 'absolute',
-    left: 48,
-    right: 72,
-    bottom: 128,
-  },
-  coverLabel: {
-    fontSize: 8,
-    letterSpacing: 2.2,
-    color: palette.forest,
-    marginBottom: 18,
-    fontFamily: BODY_FONT,
-  },
-  coverTitle: {
-    width: 430,
-    fontFamily: 'Anton',
-    fontSize: 60,
-    lineHeight: 0.95,
-    color: palette.moss,
-    marginBottom: 22,
-  },
-  coverTagline: {
-    width: 360,
-    fontSize: 12.5,
-    lineHeight: 1.5,
-    color: palette.ink,
-    fontFamily: BODY_FONT,
-  },
-  coverBottom: {
-    position: 'absolute',
-    left: 48,
-    right: 48,
-    bottom: 40,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  coverBottomText: {
-    fontSize: 7.5,
-    letterSpacing: 1.4,
-    color: palette.forest,
-    fontFamily: BODY_FONT,
+    borderLeftColor: '#36583D',
   },
 
-  logoLarge: {
-    width: 280,
-  },
-  logoSmall: {
-    width: 220,
-  },
-  logoCircleLarge: {
-    width: 86,
-    height: 86,
-    borderRadius: 86,
+  logoWrap: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
+    marginTop: 4,
   },
-  logoCircleSmall: {
-    width: 58,
-    height: 58,
-    borderRadius: 58,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 12,
-  },
-  logoCircleDark: {
-    backgroundColor: palette.forest,
-  },
-  logoCircleLight: {
+  logoMark: {
+    width: 44,
+    height: 44,
+    borderRadius: 44,
     backgroundColor: palette.cream,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
   },
-  logoLeafLarge: {
+  logoLetter: {
     fontFamily: 'Anton',
-    fontSize: 52,
+    fontSize: 28,
     lineHeight: 1,
+    color: palette.primary,
   },
-  logoLeafSmall: {
+  logoText: {
     fontFamily: 'Anton',
-    fontSize: 36,
-    lineHeight: 1,
-  },
-  logoLeafDark: {
-    color: palette.cream,
-  },
-  logoLeafLight: {
-    color: palette.forest,
-  },
-  logoWordLarge: {
-    fontFamily: 'Anton',
-    fontSize: 40,
-    color: palette.forest,
-    lineHeight: 1,
-  },
-  logoWordSmall: {
-    fontFamily: 'Anton',
-    fontSize: 26,
+    fontSize: 25,
     color: palette.cream,
     lineHeight: 1,
-  },
-  logoWordDark: {
-    color: palette.forest,
-  },
-  logoWordLight: {
-    color: palette.cream,
   },
 
   eyebrow: {
     fontSize: 8,
-    letterSpacing: 2.4,
+    letterSpacing: 2.2,
     fontFamily: BODY_FONT,
-    marginBottom: 13,
+    marginBottom: 12,
   },
   eyebrowLight: {
-    color: palette.forest,
+    color: palette.primary,
   },
   eyebrowDark: {
     color: palette.sage,
   },
-  title: {
+
+  coverMain: {
+    width: 440,
+    marginTop: 82,
+  },
+  coverTitle: {
+    width: 430,
     fontFamily: 'Anton',
-    lineHeight: 0.98,
+    fontSize: 62,
+    lineHeight: 0.92,
+    color: palette.cream,
+    marginBottom: 20,
+  },
+  coverBody: {
+    width: 390,
+    fontSize: 11.5,
+    lineHeight: 1.48,
+    color: palette.softWhite,
+    fontFamily: BODY_FONT,
+  },
+
+  coverStats: {
+    marginTop: 42,
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#36583D',
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+  statBox: {
+    width: 160,
+    paddingRight: 14,
+    marginRight: 14,
+    borderRightWidth: 1,
+    borderRightColor: '#36583D',
+  },
+  statBoxLast: {
+    flex: 1,
+  },
+  statLabel: {
+    fontSize: 7,
+    letterSpacing: 1.5,
+    color: palette.sage,
+    fontFamily: BODY_FONT,
+    marginBottom: 6,
+  },
+  statValue: {
+    fontFamily: 'Anton',
+    fontSize: 16,
+    lineHeight: 1.05,
+    color: palette.cream,
+  },
+
+  servicesBlock: {
+    marginTop: 34,
+  },
+  sectionHeaderDark: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
     marginBottom: 16,
   },
-  normalTitle: {
-    fontSize: 36,
+  sectionLabelDark: {
+    fontSize: 7.5,
+    letterSpacing: 1.8,
+    color: palette.sage,
+    fontFamily: BODY_FONT,
   },
-  largeTitle: {
-    fontSize: 43,
+  sectionTitleDark: {
+    fontFamily: 'Anton',
+    fontSize: 30,
+    color: palette.cream,
+    lineHeight: 1,
   },
-  heroTitle: {
-    fontSize: 60,
+  servicesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
-  titleLight: {
+  serviceCard: {
+    width: 242,
+    minHeight: 128,
+    backgroundColor: '#173623',
+    borderWidth: 1,
+    borderColor: '#3D6040',
+    borderRadius: 14,
+    padding: 16,
+    marginRight: 14,
+    marginBottom: 14,
+  },
+  serviceNumber: {
+    fontFamily: 'Anton',
+    fontSize: 22,
+    color: palette.accent,
+    marginBottom: 8,
+    lineHeight: 1,
+  },
+  serviceTitle: {
+    fontFamily: 'Anton',
+    fontSize: 18,
+    lineHeight: 1.05,
+    color: palette.cream,
+    marginBottom: 8,
+  },
+  serviceText: {
+    fontSize: 8.8,
+    lineHeight: 1.42,
+    color: palette.softWhite,
+    fontFamily: BODY_FONT,
+  },
+
+  introBlock: {
+    width: 460,
+    marginBottom: 20,
+  },
+  pageTitle: {
+    fontFamily: 'Anton',
+    fontSize: 42,
+    lineHeight: 0.98,
     color: palette.ink,
+    marginBottom: 12,
   },
-  titleDark: {
-    color: palette.white,
+  pageBody: {
+    width: 405,
+    fontSize: 10.3,
+    lineHeight: 1.45,
+    color: palette.muted,
+    fontFamily: BODY_FONT,
   },
-  body: {
-    fontSize: 10.8,
-    lineHeight: 1.48,
+
+  packagesGrid: {
+    flexDirection: 'row',
+    marginBottom: 17,
+  },
+  packageCard: {
+    width: 159,
+    minHeight: 247,
+    backgroundColor: palette.pale,
+    borderWidth: 1,
+    borderColor: palette.sage,
+    borderRadius: 14,
+    padding: 14,
+    marginRight: 12,
+  },
+  packageTitle: {
+    fontFamily: 'Anton',
+    fontSize: 24,
+    lineHeight: 1,
+    color: palette.primary,
+    marginBottom: 6,
+  },
+  packagePrice: {
+    fontSize: 9.2,
+    lineHeight: 1.25,
+    color: palette.ink,
     fontFamily: BODY_FONT,
     marginBottom: 10,
   },
-  bodyLight: {
-    color: palette.ink,
+  packageLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: palette.sage,
+    marginBottom: 9,
   },
-  bodyDark: {
-    color: '#E5ECD5',
-  },
-
-  pageTwoGrid: {
-    flexDirection: 'row',
-    height: 650,
-  },
-  pageTwoMain: {
-    width: 315,
-    paddingRight: 26,
-  },
-  founderBox: {
-    flex: 1,
-    backgroundColor: palette.olive,
-    borderWidth: 1,
-    borderColor: palette.sage,
-    padding: 24,
-    justifyContent: 'space-between',
-  },
-  quoteMark: {
-    fontFamily: 'Anton',
-    fontSize: 58,
-    lineHeight: 0.7,
-    color: palette.moss,
-  },
-  founderTitle: {
-    fontFamily: 'Anton',
-    fontSize: 26,
-    color: palette.ink,
-    marginBottom: 12,
-  },
-  founderText: {
-    fontSize: 10.2,
-    lineHeight: 1.48,
-    color: palette.ink,
-    marginBottom: 12,
+  packageLabel: {
+    fontSize: 6.8,
+    letterSpacing: 1.1,
+    color: palette.primary,
     fontFamily: BODY_FONT,
-  },
-  signature: {
-    marginTop: 20,
-    fontSize: 24,
-    fontStyle: 'italic',
-    color: palette.forest,
-    fontFamily: BODY_FONT,
-  },
-  signatureBrand: {
     marginTop: 4,
-    fontSize: 8,
-    letterSpacing: 1.5,
-    color: palette.forest,
-    fontFamily: BODY_FONT,
+    marginBottom: 4,
   },
-  valuesBox: {
-    marginTop: 22,
-    padding: 18,
-    backgroundColor: palette.olive,
-    borderWidth: 1,
-    borderColor: palette.sage,
-  },
-  valuesTitle: {
+  packageMeta: {
     fontFamily: 'Anton',
-    fontSize: 20,
+    fontSize: 15,
     color: palette.ink,
-    marginBottom: 12,
+    marginBottom: 7,
+    lineHeight: 1,
+  },
+  packageIdeal: {
+    fontSize: 8,
+    lineHeight: 1.35,
+    color: palette.ink,
+    fontFamily: BODY_FONT,
+    marginBottom: 7,
   },
 
   bulletRow: {
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: 5.5,
   },
   bulletDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
-    marginTop: 4,
-    marginRight: 8,
+    width: 4.5,
+    height: 4.5,
+    borderRadius: 4.5,
+    marginTop: 3.4,
+    marginRight: 6,
   },
   bulletDotLight: {
-    backgroundColor: palette.forest,
+    backgroundColor: palette.primary,
   },
   bulletDotDark: {
     backgroundColor: palette.sage,
   },
   bulletText: {
     flex: 1,
-    fontSize: 9.2,
-    lineHeight: 1.35,
+    fontSize: 8,
+    lineHeight: 1.3,
     fontFamily: BODY_FONT,
   },
   bulletTextLight: {
     color: palette.ink,
   },
   bulletTextDark: {
-    color: '#E5ECD5',
+    color: palette.softWhite,
   },
 
-  marketGrid: {
+  bottomGrid: {
     flexDirection: 'row',
-    marginTop: 8,
-  },
-  marketLeft: {
-    width: 320,
-    paddingRight: 28,
-  },
-  targetBox: {
-    flex: 1,
-    backgroundColor: '#173623',
-    borderWidth: 1,
-    borderColor: '#3D6040',
-    padding: 22,
-    marginTop: 46,
-  },
-  targetTitle: {
-    fontFamily: 'Anton',
-    fontSize: 24,
-    color: palette.white,
     marginBottom: 16,
   },
-  missionBlock: {
-    position: 'absolute',
-    left: 44,
-    right: 44,
-    bottom: 78,
-    padding: 28,
-    backgroundColor: palette.moss,
-  },
-  missionSmall: {
-    fontSize: 8,
-    letterSpacing: 2,
-    color: palette.deep,
-    fontFamily: BODY_FONT,
-    marginBottom: 12,
-  },
-  missionText: {
-    fontFamily: 'Anton',
-    fontSize: 34,
-    lineHeight: 1.02,
-    color: palette.deep,
-  },
-
-  servicesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 20,
-  },
-  serviceWrap: {
+  addOnCard: {
     width: 242,
-    marginRight: 16,
-    marginBottom: 16,
-  },
-  iconBox: {
-    width: 42,
-    height: 42,
-    borderRadius: 42,
-    backgroundColor: palette.forest,
-    marginBottom: 10,
-    position: 'relative',
-  },
-  iconLineWide: {
-    position: 'absolute',
-    left: 10,
-    top: 12,
-    width: 22,
-    height: 3,
     backgroundColor: palette.cream,
-  },
-  iconLineShort: {
-    position: 'absolute',
-    left: 10,
-    top: 20,
-    width: 14,
-    height: 3,
-    backgroundColor: palette.cream,
-  },
-  iconLineMid: {
-    position: 'absolute',
-    left: 10,
-    top: 28,
-    width: 18,
-    height: 3,
-    backgroundColor: palette.cream,
-  },
-  iconCircle: {
-    position: 'absolute',
-    left: 11,
-    top: 9,
-    width: 15,
-    height: 15,
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: palette.cream,
-  },
-  iconHandle: {
-    position: 'absolute',
-    left: 25,
-    top: 25,
-    width: 12,
-    height: 3,
-    backgroundColor: palette.cream,
-  },
-  iconLeafOne: {
-    position: 'absolute',
-    left: 10,
-    top: 14,
-    width: 18,
-    height: 10,
-    borderRadius: 10,
-    backgroundColor: palette.cream,
-  },
-  iconLeafTwo: {
-    position: 'absolute',
-    left: 18,
-    top: 24,
-    width: 18,
-    height: 10,
-    borderRadius: 10,
-    backgroundColor: palette.cream,
-  },
-  iconBarOne: {
-    position: 'absolute',
-    left: 10,
-    bottom: 10,
-    width: 5,
-    height: 12,
-    backgroundColor: palette.cream,
-  },
-  iconBarTwo: {
-    position: 'absolute',
-    left: 19,
-    bottom: 10,
-    width: 5,
-    height: 18,
-    backgroundColor: palette.cream,
-  },
-  iconBarThree: {
-    position: 'absolute',
-    left: 28,
-    bottom: 10,
-    width: 5,
-    height: 25,
-    backgroundColor: palette.cream,
-  },
-  serviceCard: {
-    minHeight: 148,
-    padding: 18,
-    backgroundColor: palette.olive,
     borderWidth: 1,
     borderColor: palette.sage,
+    borderRadius: 14,
+    padding: 16,
+    marginRight: 14,
   },
-  serviceNumber: {
-    fontFamily: 'Anton',
-    fontSize: 24,
-    color: palette.forest,
-    marginBottom: 12,
+  processCard: {
+    flex: 1,
+    backgroundColor: palette.pale,
+    borderWidth: 1,
+    borderColor: palette.sage,
+    borderRadius: 14,
+    padding: 16,
   },
-  serviceTitle: {
+  smallLabel: {
+    fontSize: 7,
+    letterSpacing: 1.6,
+    color: palette.primary,
+    fontFamily: BODY_FONT,
+    marginBottom: 7,
+  },
+  cardTitle: {
     fontFamily: 'Anton',
-    fontSize: 19,
-    lineHeight: 1.05,
+    fontSize: 23,
     color: palette.ink,
-    marginBottom: 9,
+    marginBottom: 10,
+    lineHeight: 1,
   },
-  serviceText: {
-    fontSize: 9.4,
-    lineHeight: 1.4,
+
+  processStep: {
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  processNumber: {
+    width: 30,
+    fontFamily: 'Anton',
+    fontSize: 20,
+    lineHeight: 1,
+    color: palette.primary,
+  },
+  processContent: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: palette.sage,
+    paddingBottom: 7,
+  },
+  processTitle: {
+    fontFamily: 'Anton',
+    fontSize: 14,
+    lineHeight: 1,
+    color: palette.ink,
+    marginBottom: 3,
+  },
+  processText: {
+    fontSize: 8,
+    lineHeight: 1.32,
     color: palette.muted,
     fontFamily: BODY_FONT,
   },
-  bottomStatement: {
-    marginTop: 6,
+
+  ctaBlock: {
+    position: 'absolute',
+    left: 44,
+    right: 44,
+    bottom: 56,
+    backgroundColor: palette.primary,
+    borderRadius: 18,
     padding: 20,
-    backgroundColor: palette.forest,
+    flexDirection: 'row',
   },
-  bottomStatementTitle: {
-    fontSize: 8,
-    letterSpacing: 2,
+  ctaLeft: {
+    width: 330,
+    paddingRight: 20,
+  },
+  ctaLabel: {
+    fontSize: 7,
+    letterSpacing: 1.6,
     color: palette.sage,
     fontFamily: BODY_FONT,
     marginBottom: 8,
   },
-  bottomStatementText: {
-    fontSize: 11,
-    lineHeight: 1.45,
+  ctaTitle: {
+    fontFamily: 'Anton',
+    fontSize: 27,
+    lineHeight: 1,
     color: palette.cream,
+    marginBottom: 9,
+  },
+  ctaBody: {
+    fontSize: 9,
+    lineHeight: 1.4,
+    color: palette.softWhite,
     fontFamily: BODY_FONT,
   },
-
-  backCover: {
-    position: 'relative',
-    padding: 48,
-    backgroundColor: palette.deep,
-    color: palette.white,
-    fontFamily: BODY_FONT,
-  },
-  backSolidBlock: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: 0,
-    width: 190,
-    backgroundColor: palette.moss,
-  },
-  backTop: {
-    marginTop: 4,
-  },
-  backContent: {
-    width: 390,
-    marginTop: 76,
-  },
-  backLabel: {
-    fontSize: 8,
-    letterSpacing: 2.2,
-    color: palette.sage,
-    fontFamily: BODY_FONT,
-    marginBottom: 16,
-  },
-  backTitle: {
-    fontFamily: 'Anton',
-    fontSize: 56,
-    lineHeight: 0.95,
-    color: palette.white,
-    marginBottom: 20,
-  },
-  backBody: {
-    width: 360,
-    fontSize: 11.3,
-    lineHeight: 1.45,
-    color: '#E5ECD5',
-    fontFamily: BODY_FONT,
-  },
-  backGrid: {
-    position: 'absolute',
-    left: 48,
-    right: 48,
-    bottom: 92,
-    flexDirection: 'row',
-  },
-  backContactCard: {
-    width: 250,
-    padding: 22,
-    backgroundColor: palette.cream,
-    marginRight: 18,
-  },
-  backCardTitle: {
-    fontFamily: 'Anton',
-    fontSize: 22,
-    color: palette.ink,
-    marginBottom: 18,
-  },
-  backSocialCard: {
+  ctaRight: {
     flex: 1,
-    padding: 22,
-    backgroundColor: '#173623',
-    borderWidth: 1,
-    borderColor: '#3D6040',
+    backgroundColor: palette.cream,
+    borderRadius: 12,
+    padding: 14,
+    justifyContent: 'center',
   },
-  backSocialTitle: {
-    fontFamily: 'Anton',
-    fontSize: 22,
-    color: palette.white,
-    marginBottom: 18,
-  },
-  contactRow: {
-    marginBottom: 10,
-  },
-  contactLabel: {
-    fontSize: 7.5,
-    letterSpacing: 0.8,
+  ctaSmall: {
+    fontSize: 7,
+    letterSpacing: 1.4,
+    color: palette.primary,
     fontFamily: BODY_FONT,
-    marginBottom: 3,
+    marginBottom: 9,
   },
-  contactLabelLight: {
-    color: palette.forest,
-  },
-  contactLabelDark: {
-    color: palette.sage,
-  },
-  contactValue: {
-    fontSize: 9.4,
-    lineHeight: 1.32,
+  ctaLink: {
+    fontSize: 9.2,
+    lineHeight: 1.45,
+    color: palette.ink,
     fontFamily: BODY_FONT,
     textDecoration: 'none',
-  },
-  contactValueLight: {
-    color: palette.ink,
-  },
-  contactValueDark: {
-    color: '#E5ECD5',
-  },
-  backFooter: {
-    position: 'absolute',
-    left: 48,
-    right: 48,
-    bottom: 34,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  backFooterText: {
-    fontSize: 8,
-    letterSpacing: 1.6,
-    color: palette.cream,
-    fontFamily: BODY_FONT,
+    marginBottom: 5,
   },
 });
